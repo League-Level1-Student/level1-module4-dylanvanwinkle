@@ -26,6 +26,7 @@ public class SimonSays extends KeyAdapter {
 	private int imageIndex;
 	private int tries = 0;
 	private boolean simonSays = false;
+	Random ran = new Random();
 	Date timeAtStart;
 
 	// Complete steps 1 - 7 before you test
@@ -50,9 +51,15 @@ public class SimonSays extends KeyAdapter {
 
 	public void keyPressed(KeyEvent e) {
 		// 15. Make a points variable to track the score.
-
+		int score = 0;
 		// 16. If the keyCode matches the imageIndex and "Simon says"
-
+		if (e.getKeyCode() == imageIndex && simonSays) {
+			score++;
+			System.out.println("Correct");
+		} else if (e.getKeyCode() != imageIndex && !simonSays) {
+			score++;
+			System.out.println("Correct");
+		}
 		// 17. Increase the value of score
 
 		// 18. Use the speak method to tell the user they were correct
@@ -65,16 +72,20 @@ public class SimonSays extends KeyAdapter {
 		// 21. Use the speak method to tell the user they were correct
 
 		// 22. Increment tries by 1
-
+		tries++;
 		// 25. If tries is greater than 9 (or however many you want)...
-
+		if (tries >= 9) {
+			System.out.println("Your score is " + score + ".");
+			System.exit(0);
+		}
 		// 26. Tell the user their score
 
 		// 27. Exit the program
 
 		// 23. Dispose of the frame
-
+		frame.dispose();
 		// 24. Call the showImage method to show a new image
+		showImage();
 	}
 
 	private void showImage() {
@@ -95,16 +106,14 @@ public class SimonSays extends KeyAdapter {
 		// 11. Add a key listener to the frame
 		frame.addKeyListener(this);
 		// 12. Create a new instance of Random
-		Random ran = new Random();
-		// 13. Use the Random and the speak method to either say
+		// 13. Use the Random and the speak
+		// method to either say
 		// "Simon says press this key" or "Press this key"
-		int r = ran.nextInt(1);
-		if (r == 0) {
+		simonSays = ran.nextBoolean();
+		if (simonSays) {
 			System.out.println("Simon Says press this key");
-			simonSays = true;
 		} else {
 			System.out.println("Press this key");
-			simonSays = false;
 		}
 		// 14. Above, set the value of simonSays to true/false appropriately
 
