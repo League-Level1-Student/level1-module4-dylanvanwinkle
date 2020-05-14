@@ -25,7 +25,7 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
     JFrame frame = new JFrame();
 
     int frameWidth = 500;
-    int frameHeight = 368;
+    int frameHeight = 500;
 
     FortuneTeller() throws Exception {
    	 // 1. Choose an image for your fortune teller and put it in your default package
@@ -33,6 +33,7 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 // 2. Adjust the frameWidth and frameHeight variables to fit your image nicely (doesn’t need a new line of code)
      // 3. Complete the begin() method in the FortuneTellerRunner class
  	 // 4. add a mouse listener to the frame
+   	 frame.addMouseListener(this);
 
     }
 
@@ -43,23 +44,25 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 int mouseX = e.getX();
    	 int mouseY = e.getY();
    	 // 5. Print the mouseX variable
+   	 System.out.println("X: " + mouseX + " Y: " + mouseY);
 
    	 // 6. Add the mouseY variable to the previous line so that it prints out too (no new line)
    	 // 7. Adjust your secret location co-ordinates here:
-   	 int secretLocationX = 0;
-   	 int secretLocationY = 0;
+   	 int secretLocationX = 283;
+   	 int secretLocationY = 71;
    	 /** If the mouse co-ordinates and secret location are close, we'll let them ask a question. */
    	 if (areClose(mouseX, secretLocationX) && areClose(mouseY, secretLocationY)) {
    		 // 8. Get the user to enter a question for the fortune teller
-
+String input = JOptionPane.showInputDialog("Ask a question.");
    		 // 9. Find a spooky sound and put it in your default package (freesound.org)
    		 // AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
    		 // 10. Play the sound
-
+AudioClip sound = JApplet.newAudioClip(getClass().getResource("creepy-noise.wav"));
+sound.play();
    		 // 11. Use the pause() method below to wait until your music has finished
-
    		 // 12. Insert your completed Magic 8 ball code here
-
+Magic8Ball m = new Magic8Ball(); 
+m.run();
    	 }
 
     }
@@ -68,13 +71,13 @@ public class FortuneTeller extends JPanel implements Runnable, MouseListener {
    	 return mouseX < secretLocationX + 15 && mouseX > secretLocationX - 15;
     }
 
-    private void pause(int seconds) {
-   	 try {
-   		 Thread.sleep(1000 * seconds);
-   	 } catch (InterruptedException e) {
-   		 e.printStackTrace();
-   	 }
-    }
+   // private void pause(int seconds) {
+   	// try {
+  // 		 Thread.sleep(1000 * seconds);
+ //  	 } catch (InterruptedException e) {
+   	//	 e.printStackTrace();
+   //	 }
+    //}
     
     /**************** don't worry about the stuff under here *******************/
     
